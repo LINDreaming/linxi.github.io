@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="#webview开发过程中踩到的坑；1.webview关闭时关闭音频声音的问题；一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；2.采用与JS交互的方法；在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭； #音频播放控制的问题1.音频循环播放的问题；通过监听音频播放完成的动作，">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/07/17/717/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#webview开发过程中踩到的坑；1.webview关闭时关闭音频声音的问题；一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；2.采用与JS交互的方法；在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭； #音频播放控制的问题1.音频循环播放的问题；通过监听音频播放完成的动作，">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-17T12:11:20.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="#webview开发过程中踩到的坑；1.webview关闭时关闭音频声音的问题；一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；2.采用与JS交互的方法；在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭； #音频播放控制的问题1.音频循环播放的问题；通过监听音频播放完成的动作，">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/17/717/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,137 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T14:14:49+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -374,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/17/717/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -426,9 +299,7 @@
       
 
       
-        
-          
-            <p>#webview开发过程中踩到的坑；<br>1.webview关闭时关闭音频声音的问题；<br>一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；<br>2.采用与JS交互的方法；<br>在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭；</p>
+        <p>#webview开发过程中踩到的坑；<br>1.webview关闭时关闭音频声音的问题；<br>一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；<br>2.采用与JS交互的方法；<br>在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭；</p>
 <p>#音频播放控制的问题<br>1.音频循环播放的问题；<br>通过监听音频播放完成的动作，将音频的播放回拨到开始的地方；</p>
 <pre><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 </code></pre><p>-(void)rerunPlayVideo{<br>    if (!self.player) {<br>        return;<br>    }<br>    CGFloat a=0;<br>    NSInteger dragedSeconds = floorf(a);<br>    CMTime dragedCMTime = CMTimeMake(dragedSeconds, 1);<br>    [self.player seekToTime:dragedCMTime];<br>    [self.player pause];<br>}<br>2.音频中断事件的处理；<br>因为在音频的播放过程中可能会出现事件的中断，比如说切换网络，或者有电话过来等，但是因为AVPlayItem,只初始化一下，如果在音频在初始化的过程中被中断将导致音频无法播放，</p>
@@ -456,8 +327,6 @@ if (timeout &lt; 0) {
 </code></pre></li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -474,12 +343,28 @@ if (timeout &lt; 0) {
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/12/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -489,10 +374,11 @@ if (timeout &lt; 0) {
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -500,6 +386,10 @@ if (timeout &lt; 0) {
 
 
           
+
+  
+
+
 
         </div>
         
@@ -703,6 +593,10 @@ if (timeout &lt; 0) {
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
