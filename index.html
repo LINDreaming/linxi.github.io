@@ -357,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/717/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/webview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -376,7 +376,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/17/717/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/07/17/webview/" itemprop="url">webview开发过程中踩到的坑</a></h1>
         
 
         <div class="post-meta">
@@ -428,33 +428,13 @@
       
         
           
-            <p>#webview开发过程中踩到的坑；<br>1.webview关闭时关闭音频声音的问题；<br>一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；<br>2.采用与JS交互的方法；<br>在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭；</p>
+            <p>1.webview关闭时关闭音频声音的问题；<br>一开始采取的时候采取@”about:blank”的方式关闭，发现在出现webview跳转后goback回来的时候加载之前的空白页，所以这个方法有局限性；<br>2.采用与JS交互的方法；<br>在页面关闭之前，直接调用JS关闭视频播放的方法，实现音频播放的关闭；</p>
 <p>#音频播放控制的问题<br>1.音频循环播放的问题；<br>通过监听音频播放完成的动作，将音频的播放回拨到开始的地方；</p>
 <pre><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-</code></pre><p>-(void)rerunPlayVideo{<br>    if (!self.player) {<br>        return;<br>    }<br>    CGFloat a=0;<br>    NSInteger dragedSeconds = floorf(a);<br>    CMTime dragedCMTime = CMTimeMake(dragedSeconds, 1);<br>    [self.player seekToTime:dragedCMTime];<br>    [self.player pause];<br>}<br>2.音频中断事件的处理；<br>因为在音频的播放过程中可能会出现事件的中断，比如说切换网络，或者有电话过来等，但是因为AVPlayItem,只初始化一下，如果在音频在初始化的过程中被中断将导致音频无法播放，</p>
-<p>#.倒计时结束的控制问题<br>1.通过GCD的方式控制倒计时；<br>通过计时器倒计时音频的控制，但需要处理在倒计时结束前对其它事件的处理，防止页面已经进入到其它页面了计时器还没有释放，这样常常会出现奔溃；</p>
-<ul>
-<li><p>(void)createTimer {<br>  //设置倒计时时间<br>  //<strong>block 如果修饰指针时，指针相当于弱引用，指针对指向的对象不产生引用计数的影响
-  </strong>block int timeout = 60;<br>  dispatch_queue_t global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);<br>  dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, global);<br>  // 设置触发的间隔时间<br>  dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1.0 <em> NSEC_PER_SEC, 0 </em> NSEC_PER_SEC);<br>  //1.0 <em> NSEC_PER_SEC  代表设置定时器触发的时间间隔为1s<br>  //0 </em> NSEC_PER_SEC    代表时间允许的误差是 0s<br>  //block内部 如果对当前对象的强引用属性修改 应该使用__weak typeof(self)weakSelf 修饰  避免循环调用<br>  WS(ws);<br>  //设置定时器的触发事件<br>  dispatch_source_set_event_handler(timer, ^{</p>
-<pre><code>//1. 每调用一次 时间-1s
-timeout --;
-if (timeout &lt; 0) {
-    dispatch_source_cancel(timer);
-    //MRC下需要释放，这里不需要
-    //   dispatch_realse(timer);
-    //在主线程中对button进行修改操作
-    dispatch_async(dispatch_get_main_queue(), ^{
-
-}else {
-    //处于正在倒计时，在主线程中刷新button上的title，时间-1秒
-    dispatch_async(dispatch_get_main_queue(), ^{
-
-    });
-}
-</code></pre><p>  });<br>  dispatch_resume(timer);<br>}<br>#属性字体设置字体的间隔<br>1.通过NSKernAttributeName这个方法设置属性字体的间隔；<br>NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:allStr];</p>
-<pre><code>[attStr addAttribute:NSKernAttributeName value:@9.2 range:[allStr rangeOfString:content]];
-</code></pre></li>
-</ul>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-(void)rerunPlayVideo&#123;</span><br><span class="line">    if (!self.player) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    CGFloat a=0;</span><br><span class="line">    NSInteger dragedSeconds = floorf(a);</span><br><span class="line">    CMTime dragedCMTime = CMTimeMake(dragedSeconds, 1);</span><br><span class="line">    [self.player seekToTime:dragedCMTime];</span><br><span class="line">    [self.player pause];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.音频中断事件的处理；<br>因为在音频的播放过程中可能会出现事件的中断，比如说切换网络，或者有电话过来等，但是因为AVPlayItem,只初始化一下，如果在音频在初始化的过程中被中断将导致音频无法播放，</p>
+<p>#倒计时结束的控制问题<br>1.通过GCD的方式控制倒计时；<br>通过计时器倒计时音频的控制，但需要处理在倒计时结束前对其它事件的处理，防止页面已经进入到其它页面了计时器还没有释放，这样常常会出现奔溃；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- (void)createTimer &#123;</span><br><span class="line">    __block int timeout = 60;</span><br><span class="line">    dispatch_queue_t global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, global);</span><br><span class="line">    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);</span><br><span class="line">    WS(ws);</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        timeout --;</span><br><span class="line">        if (timeout &lt; 0) &#123;</span><br><span class="line">            dispatch_source_cancel(timer);</span><br><span class="line">            dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">dispatch_resume(timer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#属性字体设置字体的间隔<br>1.通过NSKernAttributeName这个方法设置属性字体的间隔；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:allStr];</span><br><span class="line">[attStr addAttribute:NSKernAttributeName value:@9.2 range:[allStr rangeOfString:content]];</span><br></pre></td></tr></table></figure></p>
 
           
         
