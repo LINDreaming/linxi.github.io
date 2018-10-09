@@ -80,12 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Every commit lead to change.">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Every commit lead to change.">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Every commit lead to change.">
 
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>Every commit lead to change.</title>
   
 
 
@@ -152,7 +152,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Every commit lead to change.</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -229,6 +229,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/使用Fortify扫描iOS代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lin xi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Every commit lead to change.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/09/使用Fortify扫描iOS代码/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T17:06:21+08:00">
+                2018-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用Fortify工具扫描iOS代码"><a href="#使用Fortify工具扫描iOS代码" class="headerlink" title="使用Fortify工具扫描iOS代码"></a>使用Fortify工具扫描iOS代码</h1><ol>
+<li><p>安装Fortify环境；<br>下载macOC对应的软件，安装的时候需要导入许可证，这个时候报Fortify的许可证导入即可，注意选择正确的许可证的路径；</p>
+</li>
+<li><p>配置Fortify规则库;</p>
+<p>选择iOS Objc的规则库，根据以下规则，正确替换即可；<br>把*.bin拷贝至fortify安装目录/Core/config/rules目录下，覆盖掉旧文件<br>把ExternalMetadata.xml拷贝至fortify安装目录/Core/config/ExternalMetadata目录下,覆盖掉旧文件</p>
+</li>
+<li><p>执行代码扫描的命令行；<br>执行代码扫描前需要先进行clean操作，避免一些奇怪的错误；<br><code>sourceanalyzer -b &lt;build_id&gt; -clean</code><br>执行以下代码将xcode编译后的代码进行翻译，方便下一步的代码扫描；<br><code>sourceanalyzer -b &lt;build_id&gt; xcodebuild [&lt;compiler_options&gt;]</code><br>代码翻译完成之后,通过以下这行代码生成result.fpr的报告文件；<br><code>sourceanalyzer -b &lt;build_id&gt; -scan -f result.fpr</code><br>得到.fpr的扫描文件之后，可以通过软件打开，然后生成最终的扫描报告；</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -238,7 +366,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Every commit lead to change.">
     </span>
 
     
@@ -366,7 +494,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Every commit lead to change.">
     </span>
 
     
@@ -516,7 +644,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
